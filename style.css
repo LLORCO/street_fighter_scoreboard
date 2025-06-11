@@ -14,13 +14,11 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  background: #111;
-  padding: 10px 20px;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   font-size: 24px;
   width: 100%;
-  max-width: 90vw;
+  /*max-width: 90vw;*/
   margin: 0 auto;
 }
 
@@ -48,6 +46,15 @@ body {
   gap: 10px;
 }
 
+.player-info {
+  background: #111;
+  padding: 8px 20px;
+  border-radius: 8px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
 .player-left .name {
   text-align: right;
 }
@@ -63,16 +70,14 @@ body {
 .score {
   font-size: 36px;
   font-weight: bold;
-  margin-top: 4px;
 }
 
 .team-info {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 50px;
   font-size: 16px;
   width: 100%;
-  max-width: 90vw;
 }
 
 .team {
@@ -82,12 +87,23 @@ body {
 
 .team-left {
   justify-content: flex-start;
+  display: flex;
+  width: 100%;
 }
 
 .team-right {
   justify-content: flex-end;
   display: flex;
   width: 100%;
+}
+
+.team-info-container {
+  background: #111;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .team-name {
