@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css?v=1" />
+  <title>Street Fighter Scoreboard</title>
+</head>
+<body>
+  <div class="scoreboard">
+    <div class="player player-left">
+      <div class="name" id="player1-name">Player 1</div>
+      <div class="score" id="player1-score">0</div>
+    </div>
+    <div class="match-info-center">
+      <div id="match-info-text">FT3</div>
+    </div>
+    <div class="player player-right">
+      <div class="score" id="player2-score">0</div>
+      <div class="name" id="player2-name">Player 2</div>
+    </div>
+  </div>
+
+  <div class="team-info">
+    <div class="team team-left">
+      <div class="team-name" id="team1-name">Team 1</div>
+      <div class="team-score" id="team1-score">0</div>
+    </div>
+    <div class="team team-right">
+      <div class="team-score" id="team2-score">0</div>
+      <div class="team-name" id="team2-name">Team 2</div>
+    </div>
+  </div>
+
+  <script>
+    function updateScoreboard(data) {
+      document.getElementById("player1-name").textContent = data.player1;
+      document.getElementById("player2-name").textContent = data.player2;
+      document.getElementById("player1-score").textContent = data.score1;
+      document.getElementById("player2-score").textContent = data.score2;
+      document.getElementById("match-info-text").textContent = data.match_info;
+      document.getElementById("team1-name").textContent = data.team1;
+      document.getElementById("team2-name").textContent = data.team2;
+      document.getElementById("team1-score").textContent = data.team_score1;
+      document.getElementById("team2-score").textContent = data.team_score2;
+    }
+
+    // Conectar al stream de eventos
+    const eventSource = new EventSource('/stream');
+    
+    eventSource.onmessage = function(event) {
+      const data = JSON.parse(event.data);
+      updateScoreboard(data);
+    };
+
+    eventSource.onerror = function(err) {
+      console.error("Error en la conexión SSE:", err);
+      eventSource.close();
+    };
+  </script>
+</body>
+</html>
